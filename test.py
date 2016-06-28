@@ -3,21 +3,26 @@
 import sys
 from datetime import datetime
 
+
 def main():
     abc = sys.argv[1]
     date_list = []
-    final_value = abc
     for x in abc.split('/'):
         date_list.append(int(x))
-    # Reverce and prepare year
-    date_list.sort(reverse=True)
+    # Reverse and prepare year
+    for x in date_list:
+        if x == 0 or 00:
+            date_list[x] = 2000
+            break
+
+    date_list.sort()
     if len(str(date_list[0])) < 4:
-        date_list[0] += 2000  
+        date_list[0] += 2000
     elif date_list[0] < 2000 or date_list[0] > 2999:
-        pass
-    
-    # Lets check day and month    
-    day_index = date_list.index(max(date_list[1], date_list[2]))
+        print("Is illegal: " + abc)
+        return
+
+    # Lets check day and month
     try:
         final_value = datetime(*date_list)
     except ValueError:
@@ -26,9 +31,11 @@ def main():
         try:
             final_value = datetime(*date_list)
         except ValueError:
-            pass
-        
-    print(final_value)			
-    
+            print("Is illegal: " + abc)
+            return
+
+    print(final_value.strftime("%Y-%m-%d"))
+
+
 if __name__ == '__main__':
     main()
