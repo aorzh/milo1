@@ -9,7 +9,7 @@ def main():
     date_list = []
     for x in abc.split('/'):
         date_list.append(int(x))
-    # Reverse and prepare year
+    # Prepare year
     for x in date_list:
         if x == 0 or 00:
             date_list[x] = 2000
